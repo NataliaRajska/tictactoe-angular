@@ -44,8 +44,14 @@ button {
     .subfield {
       cursor: pointer;
       height: 100px;
-      weight: 100px;
+      width: 100px;
       border: 1px solid whitesmoke;
+      &.player-one {
+        background: #e3df04;
+      }
+      &.player-two {
+        background: #f53302;
+      }
     }
   }
   }
