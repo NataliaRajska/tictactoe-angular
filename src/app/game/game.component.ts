@@ -33,7 +33,7 @@ export class GameComponent implements OnInit {
 
             await this.game.checkGameEndWinner().then((end: boolean) => {
                 if (this.game.gameStatus === 0 && end) {
-                    information.innerHTML = 'The winner is ' + this.game.currentTurn;
+                    information.innerHTML = 'The winner is Player ' + this.game.currentTurn;
                 }
             });
 
