@@ -1,31 +1,32 @@
 <div class="main-container">
     <h1 class="mat-display-2">Tic Tac Toe</h1>
     <div class="field d-flex justify-content-center">
-        <p class="mat-display-1">Start the game on the button</p>
+        <p class="current-status mat-display-1">Start the game on the button</p>
     </div>
-    <div class="field d-flex justify-content-center">
-        <button mat-raised-button color="primary" class="start-game-button"> Start Game now!</button>
+    <div *ngIf="this.game.gameStatus === 0" class="field d-flex justify-content-center">
+        <button (click)="startGame()" mat-raised-button color="primary" class="start-game-button"> Start Game now!
+        </button>
     </div>
 
-    <div class="gameboard">
+    <div *ngIf="this.game.gameStatus === 1" class="gameboard">
         <div class="players player-one align-self-center">
             <p class="mat-body-1">PLAYER 1</p>
         </div>
         <div class="gamefield container-fluid">
             <div class="row">
-                <div class="subfield col-4"></div>
-                <div class="subfield col-4"></div>
-                <div class="subfield col-4"></div>
+                <div (click)="clickSubfield($event)" position="0" class="subfield col-4"></div>
+                <div (click)="clickSubfield($event)" position="1" class="subfield col-4"></div>
+                <div (click)="clickSubfield($event)" position="2" class="subfield col-4"></div>
             </div>
             <div class="row">
-                <div class="subfield col-4"></div>
-                <div class="subfield col-4"></div>
-                <div class="subfield col-4"></div>
+                <div (click)="clickSubfield($event)" position="3" class="subfield col-4"></div>
+                <div (click)="clickSubfield($event)" position="4" class="subfield col-4"></div>
+                <div (click)="clickSubfield($event)" position="5" class="subfield col-4"></div>
             </div>
             <div class="row">
-                <div class="subfield col-4"></div>
-                <div class="subfield col-4"></div>
-                <div class="subfield col-4"></div>
+                <div (click)="clickSubfield($event)" position="6" class="subfield col-4"></div>
+                <div (click)="clickSubfield($event)" position="7" class="subfield col-4"></div>
+                <div (click)="clickSubfield($event)" position="8" class="subfield col-4"></div>
             </div>
         </div>
         <div class="players player-two align-self-center">
