@@ -4,3 +4,24 @@ h1 {
   color: whitesmoke;
 }
 
+.field {
+  width: 100%;
+}
+
+button {
+  background-color: yellowgreen;
+}
+
+.main-container {
+  .gameboard {
+    .gamefield {
+    max-width: 300px;
+    .subfield {
+      cursor: pointer;
+      height: 100px;
+      weight: 100px;
+      border: 1px solid whitesmoke;
+    }
+  }
+  }
+}
