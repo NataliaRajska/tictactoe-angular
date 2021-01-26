@@ -12,8 +12,33 @@ button {
   background-color: yellowgreen;
 }
 
+.mat-body-1 {
+  font-weight: 700;
+  margin: 0 0 10em 10em;
+}
+.mat-body-2 {
+  font-weight: 700;
+  margin: 0 10em 10em 0;
+}
+
 .main-container {
   .gameboard {
+    margin-top: 4em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .player-one {
+      p {
+        color: #e3df04;
+      }
+    }
+    .player-two {
+      p {
+        color: #f53302;
+      }
+    }
+
     .gamefield {
     max-width: 300px;
     .subfield {
