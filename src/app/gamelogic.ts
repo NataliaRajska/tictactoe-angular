@@ -1,11 +1,12 @@
 import {Status} from './status.enum';
+import {Observable, of} from "rxjs";
 
 export class Gamelogic {
 
-    gameField: Array<number> = [];
+    gameField: number[] = [];
     gameStatus: Status;
     currentTurn: number;
-    winSituationsOne: Array<Array<number>> = [
+    winSituationsOne: number[][] = [
         [1, 1, 1, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 1, 1, 1, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 1, 1, 1],
@@ -16,7 +17,7 @@ export class Gamelogic {
         [1, 0, 0, 0, 1, 0, 0, 0, 1]
     ]
 
-    winSituationsTwo: Array<Array<number>> = [
+    winSituationsTwo: number[][] = [
         [2, 2, 2, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 2, 2, 2, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 2, 2, 2],
@@ -26,7 +27,6 @@ export class Gamelogic {
         [0, 0, 2, 0, 2, 0, 0, 0, 2],
         [2, 0, 0, 0, 2, 0, 0, 0, 2]
     ]
-
 
     public constructor() {
         this.gameStatus = Status.STOP;
@@ -56,12 +56,12 @@ export class Gamelogic {
         this.currentTurn = (this.currentTurn === 2) ? 1 : 2;
     }
 
-    arrayEquals(a: Array<any>, b: Array<any>): boolean {
+    arrayEquals(a: number[], b: number[]): boolean {
         return Array.isArray(a) && Array.isArray(b) && a.length === b.length &&
             a.every((value, index) => value === b[index]);
     }
 
-    async checkGameEndFull(): Promise<boolean> {
+   checkGameEndFull(): Observable<boolean> {
         let isFull = true;
         if (this.gameField.includes(0)) {
             isFull = false;
@@ -69,16 +69,16 @@ export class Gamelogic {
         if (isFull) {
             console.log('field is full')
             this.gameEnd();
-            return true;
+            return of(true);
         }
-        return false;
+        return of(false);
     }
 
     private gameEnd(): void {
         this.gameStatus = Status.STOP;
     }
 
-    async checkGameEndWinner(): Promise<boolean> {
+    checkGameEndWinner(): Observable<boolean> {
         let isWinner = false;
         const checkArray = (this.currentTurn === 1) ? this.winSituationsOne : this.winSituationsTwo;
         const currentarray = [];
@@ -99,8 +99,8 @@ export class Gamelogic {
 
         if (isWinner) {
             this.gameEnd();
-            return true;
+            return of(true);
         }
-        return false;
+        return of(false);
     }
 }
