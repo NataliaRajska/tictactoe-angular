@@ -25,6 +25,7 @@ export class GameComponent implements OnInit {
     async clickSubfield(subfiled: any): Promise<void> {
         if (this.game.gameStatus === 1) {
             const position = subfiled.currentTarget.getAttribute('position');
+            const information = document.querySelector('.current-status');
             console.log(position);
 
             this.game.setField(position, this.game.currentTurn);
@@ -33,6 +34,7 @@ export class GameComponent implements OnInit {
 
             await this.game.checkGameEndWinner().then((end: boolean) => {
                 if (this.game.gameStatus === 0 && end) {
+                    const information = document.querySelector('.current-status');
                     information.innerHTML = 'The winner is Player ' + this.game.currentTurn;
                 }
             });

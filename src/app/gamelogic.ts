@@ -78,7 +78,7 @@ export class Gamelogic {
         this.gameStatus = Status.STOP;
     }
 
-    checkGameEndWinner(): Promise<boolean> {
+    async checkGameEndWinner(): Promise<boolean> {
         let isWinner = false;
         const checkArray = (this.currentTurn === 1) ? this.winSituationsOne : this.winSituationsTwo;
         const currentarray = [];
