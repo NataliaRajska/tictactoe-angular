@@ -86,8 +86,10 @@ export class Gamelogic {
         this.gameField.forEach((subfield, index) => {
             if (subfield !== this.currentTurn) {
                 currentarray[index] = 0;
+            }else {
+                currentarray[index] = this.currentTurn;
             }
-            currentarray[index] = subfield;
+            // currentarray[index] = subfield;
         });
 
         checkArray.forEach((checkField, checkIndex) => {
