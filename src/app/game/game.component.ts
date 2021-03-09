@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Gamelogic} from "../gamelogic";
+import {Status} from "../status.enum";
 
 @Component({
     selector: 'app-game',
@@ -23,7 +24,7 @@ export class GameComponent implements OnInit {
     }
 
     clickSubfield(subfiled: any){
-        if (this.game.gameStatus === 1) {
+        if (this.game.gameStatus === Status.START) {
             const position = subfiled.currentTarget.getAttribute('position');
             const information = document.querySelector('.current-status');
             console.log(position);
@@ -33,20 +34,20 @@ export class GameComponent implements OnInit {
             subfiled.currentTarget.classList.add(color);
 
             this.game.checkGameEndWinner().subscribe((end: boolean) => {
-                if (this.game.gameStatus === 0 && end) {
+                if (this.game.gameStatus === Status.STOP && end) {
                     information.innerHTML = 'The winner is Player ' + this.game.currentTurn;
                 }
             });
 
             this.game.checkGameEndFull().subscribe((end: boolean) => {
-                if (this.game.gameStatus === 0 && end) {
+                if (this.game.gameStatus === Status.STOP && end) {
                     information.innerHTML = 'Draw, congratulation both';
                 }
             });
 
             this.game.changePlayer();
 
-            if (this.game.gameStatus === 1) {
+            if (this.game.gameStatus === Status.START) {
                 information.innerHTML = 'Current turn: PLayer: ' + this.game.currentTurn;
             }
         }
